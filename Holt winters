@@ -1,1 +1,13 @@
 ## Elaboração do modelo de Holt Winters
+##A série possui sazonalidade.
+## A série não é estacionário em dif=0 e é estacionária em dif=1
+
+#Ajustando modelo de HoltWinters multiplicativo e sazional
+fit <- HoltWinters(tx_ts, seasonal="mult")
+plot(fit)
+
+library(forecast)
+
+fore_fit <-forecast(fit,h=11,level = c(90, 95))
+fore_fit
+plot(fit,fore_fit)
