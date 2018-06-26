@@ -1,1 +1,15 @@
 ##Importação da base para o R
+dados <- read.csv("testeEvasaoMS.csv",header=TRUE, sep=";", dec ="," )
+str(dados)
+head(dados,5)
+
+##Transformação da base para Time Series
+tx_ts <- ts(dados$TX.EvasãoPROFISSIONAL, start=c(2007,1), end=c(2017,12), frequency=12)
+tx_ts
+
+##Grafico de linha da serie
+plot(tx_ts)
+
+##Grafico de linha das primeiras diferenças para avaliar estacionaridade
+df_ts <- diff(tx_ts,1)
+plot.ts(df_ts)
